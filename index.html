@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTools - Your Complete Financial Toolkit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .tool-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-header i {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+        
+        .tool-header h3 {
+            font-size: 1.5rem;
+        }
+        
+        .tool-content {
+            padding: 1.5rem;
+        }
+        
+        .tool-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .tool-form {
+            display: none;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .result-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .result-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .range-slider {
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 1.5rem;
+            }
+            
+            .nav-links li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        /* Tool specific styles */
+        .loan-form, .budget-form, .tax-form, .savings-form, .currency-form {
+            display: none;
+        }
+        
+        .active-tool {
+            display: block;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-top: 2rem;
+            position: relative;
+        }
+        
+        .budget-categories {
+            margin-top: 1.5rem;
+        }
+        
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .category-name {
+            font-weight: 600;
+        }
+        
+        .category-amount {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .currency-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .currency-result {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .currency-flag {
+            width: 30px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+        
+        /* Animation for results */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animated-result {
+            animation: pulse 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>FinTools</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#loan-calculator">Loan Calculator</a></li>
+                    <li><a href="#budget-planner">Budget Planner</a></li>
+                    <li><a href="#tax-estimator">Tax Estimator</a></li>
+                    <li><a href="#savings-tracker">Savings Tracker</a></li>
+                    <li><a href="#currency-converter">Currency Converter</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <h1>Your Complete Financial Toolkit</h1>
+            <p>Powerful financial tools to help you make informed decisions about loans, budgets, taxes, savings, and currency conversions.</p>
+        </section>
+        
+        <section class="tools-grid">
+            <!-- Loan Calculator Card -->
+            <div class="tool-card" id="loan-calculator">
+                <div class="tool-header">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Loan Calculator</h3>
+                </div>
+                <div class="tool-content">
+                    <p>Calculate your monthly loan payments, total interest, and amortization schedule for any type of loan.</p>
+                    <a href="#" class="btn open-loan">Open Calculator</a>
+                </div>
+            </div>
+            
+            <!-- Budget Planner Card -->
+            <div class="tool-card" id="budget-planner">
+                <div class="tool-header">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Budget Planner</h3>
+                </div>
+                <div class="tool-content">
+                    <p>Create a personalized budget plan to track your income and expenses and achieve your financial goals.</p>
+                    <a href="#" class="btn open-budget">Open Planner</a>
+                </div>
+            </div>
+            
+            <!-- Tax Estimator Card -->
+            <div class="tool-card" id="tax-estimator">
+                <div class="tool-header">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h3>Tax Estimator</h3>
+                </div>
+                <div class="tool-content">
+                    <p>Estimate your tax liability and potential refund based on your income, deductions, and filing status.</p>
+                    <a href="#" class="btn open-tax">Open Estimator</a>
+                </div>
+            </div>
+            
+            <!-- Savings Goal Tracker Card -->
+            <div class="tool-card" id="savings-tracker">
+                <div class="tool-header">
+                    <i class="fas fa-piggy-bank"></i>
+                    <h3>Savings Goal Tracker</h3>
+                </div>
+                <div class="tool-content">
+                    <p>Set savings goals and track your progress with visual charts and milestone achievements.</p>
+                    <a href="#" class="btn open-savings">Open Tracker</a>
+                </div>
+            </div>
+            
+            <!-- Currency Converter Card -->
+            <div class="tool-card" id="currency-converter">
+                <div class="tool-header">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Currency Converter</h3>
+                </div>
+                <div class="tool-content">
+                    <p>Convert between world currencies with up-to-date exchange rates and historical data.</p>
+                    <a href="#" class="btn open-currency">Open Converter</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Loan Calculator Form -->
+        <div class="tool-form loan-form" id="loan-tool">
+            <h2>Loan Calculator</h2>
+            <form id="loanCalculator">
+                <div class="form-group">
+                    <label for="loanAmount">Loan Amount ($)</label>
+                    <input type="number" id="loanAmount" class="form-control" placeholder="e.g. 25000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="interestRate">Interest Rate (%)</label>
+                    <input type="range" id="interestRate" class="range-slider" min="1" max="20" step="0.1" value="5">
+                    <div class="slider-labels">
+                        <span>1%</span>
+                        <span id="interestRateValue">5%</span>
+                        <span>20%</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loanTerm">Loan Term (years)</label>
+                    <input type="range" id="loanTerm" class="range-slider" min="1" max="30" step="1" value="5">
+                    <div class="slider-labels">
+                        <span>1</span>
+                        <span id="loanTermValue">5</span>
+                        <span>30</span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">Calculate</button>
+                <a href="#" class="btn btn-outline close-tool">Close</a>
+            </form>
+            
+            <div class="result-container" id="loanResult" style="display: none;">
+                <h3 class="result-title">Monthly Payment</h3>
+                <p class="result-value" id="monthlyPayment">$0.00</p>
+                
+                <div class="result-details">
+                    <p>Total Interest: <span id="totalInterest">$0.00</span></p>
+                    <p>Total Payment: <span id="totalPayment">$0.00</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Budget Planner Form -->
+        <div class="tool-form budget-form" id="budget-tool">
+            <h2>Budget Planner</h2>
+            <form id="budgetPlanner">
+                <div class="form-group">
+                    <label for="monthlyIncome">Monthly Income ($)</label>
+                    <input type="number" id="monthlyIncome" class="form-control" placeholder="e.g. 5000" required>
+                </div>
+                
+                <h3>Expenses</h3>
+                
+                <div class="form-group">
+                    <label for="housingExpense">Housing ($)</label>
+                    <input type="number" id="housingExpense" class="form-control" placeholder="Rent/Mortgage" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="utilitiesExpense">Utilities ($)</label>
+                    <input type="number" id="utilitiesExpense" class="form-control" placeholder="Electricity, Water, etc." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="foodExpense">Food ($)</label>
+                    <input type="number" id="foodExpense" class="form-control" placeholder="Groceries, Dining out" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="transportationExpense">Transportation ($)</label>
+                    <input type="number" id="transportationExpense" class="form-control" placeholder="Car, Public Transport" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="otherExpense">Other Expenses ($)</label>
+                    <input type="number" id="otherExpense" class="form-control" placeholder="Entertainment, Shopping, etc." required>
+                </div>
+                
+                <button type="submit" class="btn">Calculate Budget</button>
+                <a href="#" class="btn btn-outline close-tool">Close</a>
+            </form>
+            
+            <div class="result-container" id="budgetResult" style="display: none;">
+                <h3 class="result-title">Budget Summary</h3>
+                <p>Total Income: <span class="result-value" id="totalIncome">$0.00</span></p>
+                <p>Total Expenses: <span class="result-value" id="totalExpenses">$0.00</span></p>
+                <p>Remaining Balance: <span class="result-value" id="remainingBalance">$0.00</span></p>
+                
+                <div class="budget-categories">
+                    <h4>Expense Breakdown</h4>
+                    <div class="category-item">
+                        <span class="category-name">Housing</span>
+                        <span class="category-amount" id="housingPercent">0%</span>
+                    </div>
+                    <div class="category-item">
+                        <span class="category-name">Utilities</span>
+                        <span class="category-amount" id="utilitiesPercent">0%</span>
+                    </div>
+                    <div class="category-item">
+                        <span class="category-name">Food</span>
+                        <span class="category-amount" id="foodPercent">0%</span>
+                    </div>
+                    <div class="category-item">
+                        <span class="category-name">Transportation</span>
+                        <span class="category-amount" id="transportationPercent">0%</span>
+                    </div>
+                    <div class="category-item">
+                        <span class="category-name">Other</span>
+                        <span class="category-amount" id="otherPercent">0%</span>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="budgetChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tax Estimator Form -->
+        <div class="tool-form tax-form" id="tax-tool">
+            <h2>Tax Estimator</h2>
+            <form id="taxEstimator">
+                <div class="form-group">
+                    <label for="filingStatus">Filing Status</label>
+                    <select id="filingStatus" class="form-control" required>
+                        <option value="single">Single</option>
+                        <option value="married">Married Filing Jointly</option>
+                        <option value="head">Head of Household</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="annualIncome">Annual Income ($)</label>
+                    <input type="number" id="annualIncome" class="form-control" placeholder="e.g. 75000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="deductions">Deductions ($)</label>
+                    <input type="number" id="deductions" class="form-control" placeholder="Standard or Itemized" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="taxCredits">Tax Credits ($)</label>
+                    <input type="number" id="taxCredits" class="form-control" placeholder="e.g. 2000" required>
+                </div>
+                
+                <button type="submit" class="btn">Estimate Taxes</button>
+                <a href="#" class="btn btn-outline close-tool">Close</a>
+            </form>
+            
+            <div class="result-container" id="taxResult" style="display: none;">
+                <h3 class="result-title">Tax Estimate</h3>
+                <p>Taxable Income: <span id="taxableIncome">$0.00</span></p>
+                <p>Estimated Tax: <span class="result-value" id="estimatedTax">$0.00</span></p>
+                <p>Effective Tax Rate: <span id="effectiveTaxRate">0%</span></p>
+                <p>After-Tax Income: <span class="result-value" id="afterTaxIncome">$0.00</span></p>
+            </div>
+        </div>
+        
+        <!-- Savings Goal Tracker Form -->
+        <div class="tool-form savings-form" id="savings-tool">
+            <h2>Savings Goal Tracker</h2>
+            <form id="savingsTracker">
+                <div class="form-group">
+                    <label for="savingsGoal">Savings Goal ($)</label>
+                    <input type="number" id="savingsGoal" class="form-control" placeholder="e.g. 10000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="currentSavings">Current Savings ($)</label>
+                    <input type="number" id="currentSavings" class="form-control" placeholder="e.g. 2500" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="monthlyContribution">Monthly Contribution ($)</label>
+                    <input type="number" id="monthlyContribution" class="form-control" placeholder="e.g. 500" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="interestRateSavings">Annual Interest Rate (%)</label>
+                    <input type="range" id="interestRateSavings" class="range-slider" min="0" max="15" step="0.1" value="3">
+                    <div class="slider-labels">
+                        <span>0%</span>
+                        <span id="interestRateSavingsValue">3%</span>
+                        <span>15%</span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">Calculate</button>
+                <a href="#" class="btn btn-outline close-tool">Close</a>
+            </form>
+            
+            <div class="result-container" id="savingsResult" style="display: none;">
+                <h3 class="result-title">Savings Projection</h3>
+                <p>Time to Reach Goal: <span class="result-value" id="timeToGoal">0 months</span></p>
+                <p>Total Interest Earned: <span id="totalInterestEarned">$0.00</span></p>
+                <p>Final Amount: <span class="result-value" id="finalAmount">$0.00</span></p>
+                
+                <div class="chart-container">
+                    <canvas id="savingsChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Currency Converter Form -->
+        <div class="tool-form currency-form" id="currency-tool">
+            <h2>Currency Converter</h2>
+            <form id="currencyConverter">
+                <div class="currency-grid">
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" class="form-control" placeholder="e.g. 100" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fromCurrency">From</label>
+                        <select id="fromCurrency" class="form-control" required>
+                            <option value="USD">US Dollar (USD)</option>
+                            <option value="EUR">Euro (EUR)</option>
+                            <option value="GBP">British Pound (GBP)</option>
+                            <option value="JPY">Japanese Yen (JPY)</option>
+                            <option value="CAD">Canadian Dollar (CAD)</option>
+                            <option value="AUD">Australian Dollar (AUD)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="toCurrency">To</label>
+                        <select id="toCurrency" class="form-control" required>
+                            <option value="EUR">Euro (EUR)</option>
+                            <option value="USD" selected>US Dollar (USD)</option>
+                            <option value="GBP">British Pound (GBP)</option>
+                            <option value="JPY">Japanese Yen (JPY)</option>
+                            <option value="CAD">Canadian Dollar (CAD)</option>
+                            <option value="AUD">Australian Dollar (AUD)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">Convert</button>
+                <a href="#" class="btn btn-outline close-tool">Close</a>
+            </form>
+            
+            <div class="result-container" id="currencyResult" style="display: none;">
+                <h3 class="result-title">Conversion Result</h3>
+                <div class="currency-result">
+                    <img src="https://flagcdn.com/16x12/us.png" alt="USD" class="currency-flag" id="fromFlag">
+                    <span id="fromAmount">0</span> <span id="fromCurrencyCode">USD</span> =
+                </div>
+                <div class="currency-result">
+                    <img src="https://flagcdn.com/16x12/eu.png" alt="EUR" class="currency-flag" id="toFlag">
+                    <span class="result-value" id="convertedAmount">0</span> <span id="toCurrencyCode">EUR</span>
+                </div>
+                <p>Exchange Rate: 1 <span id="fromCode">USD</span> = <span id="exchangeRate">0</span> <span id="toCode">EUR</span></p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>FinTools</h4>
+                    <p>Your complete financial toolkit for making informed decisions about loans, budgets, taxes, savings, and currency conversions.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="#loan-calculator">Loan Calculator</a></li>
+                        <li><a href="#budget-planner">Budget Planner</a></li>
+                        <li><a href="#tax-estimator">Tax Estimator</a></li>
+                        <li><a href="#savings-tracker">Savings Tracker</a></li>
+                        <li><a href="#currency-converter">Currency Converter</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Financial Guides</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Glossary</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 FinTools. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Tool Toggle Functionality
+        document.querySelectorAll('.open-loan').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.tool-form').forEach(form => form.style.display = 'none');
+                document.querySelector('.loan-form').style.display = 'block';
+                window.scrollTo({ top: document.querySelector('.loan-form').offsetTop - 20, behavior: 'smooth' });
+            });
+        });
+        
+        document.querySelectorAll('.open-budget').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.tool-form').forEach(form => form.style.display = 'none');
+                document.querySelector('.budget-form').style.display = 'block';
+                window.scrollTo({ top: document.querySelector('.budget-form').offsetTop - 20, behavior: 'smooth' });
+            });
+        });
+        
+        document.querySelectorAll('.open-tax').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.tool-form').forEach(form => form.style.display = 'none');
+                document.querySelector('.tax-form').style.display = 'block';
+                window.scrollTo({ top: document.querySelector('.tax-form').offsetTop - 20, behavior: 'smooth' });
+            });
+        });
+        
+        document.querySelectorAll('.open-savings').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.tool-form').forEach(form => form.style.display = 'none');
+                document.querySelector('.savings-form').style.display = 'block';
+                window.scrollTo({ top: document.querySelector('.savings-form').offsetTop - 20, behavior: 'smooth' });
+            });
+        });
+        
+        document.querySelectorAll('.open-currency').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.tool-form').forEach(form => form.style.display = 'none');
+                document.querySelector('.currency-form').style.display = 'block';
+                window.scrollTo({ top: document.querySelector('.currency-form').offsetTop - 20, behavior: 'smooth' });
+            });
+        });
+        
+        document.querySelectorAll('.close-tool').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.tool-form').forEach(form => form.style.display = 'none');
+            });
+        });
+        
+        // Range Sliders
+        const interestRateSlider = document.getElementById('interestRate');
+        const interestRateValue = document.getElementById('interestRateValue');
+        interestRateSlider.addEventListener('input', function() {
+            interestRateValue.textContent = this.value + '%';
+        });
+        
+        const loanTermSlider = document.getElementById('loanTerm');
+        const loanTermValue = document.getElementById('loanTermValue');
+        loanTermSlider.addEventListener('input', function() {
+            loanTermValue.textContent = this.value;
+        });
+        
+        const interestRateSavingsSlider = document.getElementById('interestRateSavings');
+        const interestRateSavingsValue = document.getElementById('interestRateSavingsValue');
+        interestRateSavingsSlider.addEventListener('input', function() {
+            interestRateSavingsValue.textContent = this.value + '%';
+        });
+        
+        // Loan Calculator
+        document.getElementById('loanCalculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const amount = parseFloat(document.getElementById('loanAmount').value);
+            const interestRate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+            const loanTerm = parseFloat(document.getElementById('loanTerm').value) * 12;
+            
+            // Calculate monthly payment
+            const x = Math.pow(1 + interestRate, loanTerm);
+            const monthly = (amount * x * interestRate) / (x - 1);
+            
+            // Calculate total payment and total interest
+            const totalPayment = monthly * loanTerm;
+            const totalInterest = totalPayment - amount;
+            
+            // Display results
+            document.getElementById('monthlyPayment').textContent = '$' + monthly.toFixed(2);
+            document.getElementById('totalInterest').textContent = '$' + totalInterest.toFixed(2);
+            document.getElementById('totalPayment').textContent = '$' + totalPayment.toFixed(2);
+            
+            // Show result container with animation
+            const resultContainer = document.getElementById('loanResult');
+            resultContainer.style.display = 'block';
+            resultContainer.classList.add('animated-result');
+            
+            // Scroll to results
+            setTimeout(() => {
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        });
+        
+        // Budget Planner
+        document.getElementById('budgetPlanner').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const income = parseFloat(document.getElementById('monthlyIncome').value);
+            const housing = parseFloat(document.getElementById('housingExpense').value);
+            const utilities = parseFloat(document.getElementById('utilitiesExpense').value);
+            const food = parseFloat(document.getElementById('foodExpense').value);
+            const transportation = parseFloat(document.getElementById('transportationExpense').value);
+            const other = parseFloat(document.getElementById('otherExpense').value);
+            
+            const totalExpenses = housing + utilities + food + transportation + other;
+            const remaining = income - totalExpenses;
+            
+            // Calculate percentages
+            const housingPercent = (housing / income * 100).toFixed(1);
+            const utilitiesPercent = (utilities / income * 100).toFixed(1);
+            const foodPercent = (food / income * 100).toFixed(1);
+            const transportationPercent = (transportation / income * 100).toFixed(1);
+            const otherPercent = (other / income * 100).toFixed(1);
+            
+            // Display results
+            document.getElementById('totalIncome').textContent = '$' + income.toFixed(2);
+            document.getElementById('totalExpenses').textContent = '$' + totalExpenses.toFixed(2);
+            document.getElementById('remainingBalance').textContent = '$' + remaining.toFixed(2);
+            
+            document.getElementById('housingPercent').textContent = housingPercent + '%';
+            document.getElementById('utilitiesPercent').textContent = utilitiesPercent + '%';
+            document.getElementById('foodPercent').textContent = foodPercent + '%';
+            document.getElementById('transportationPercent').textContent = transportationPercent + '%';
+            document.getElementById('otherPercent').textContent = otherPercent + '%';
+            
+            // Create budget chart
+            const ctx = document.getElementById('budgetChart').getContext('2d');
+            if (window.budgetChart) {
+                window.budgetChart.destroy();
+            }
+            
+            window.budgetChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Housing', 'Utilities', 'Food', 'Transportation', 'Other'],
+                    datasets: [{
+                        data: [housing, utilities, food, transportation, other],
+                        backgroundColor: [
+                            '#4361ee',
+                            '#3f37c9',
+                            '#4895ef',
+                            '#4cc9f0',
+                            '#f72585'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        }
+                    }
+                }
+            });
+            
+            // Show result container with animation
+            const resultContainer = document.getElementById('budgetResult');
+            resultContainer.style.display = 'block';
+            resultContainer.classList.add('animated-result');
+            
+            // Scroll to results
+            setTimeout(() => {
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        });
+        
+        // Tax Estimator
+        document.getElementById('taxEstimator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const filingStatus = document.getElementById('filingStatus').value;
+            const income = parseFloat(document.getElementById('annualIncome').value);
+            const deductions = parseFloat(document.getElementById('deductions').value);
+            const credits = parseFloat(document.getElementById('taxCredits').value);
+            
+            // Simplified tax calculation (for demonstration)
+            let taxableIncome = income - deductions;
+            if (taxableIncome < 0) taxableIncome = 0;
+            
+            let tax = 0;
+            
+            // Very simplified tax brackets (not accurate for real use)
+            if (filingStatus === 'single') {
+                if (taxableIncome > 523600) tax = taxableIncome * 0.37;
+                else if (taxableIncome > 209425) tax = taxableIncome * 0.35;
+                else if (taxableIncome > 164925) tax = taxableIncome * 0.32;
+                else if (taxableIncome > 86375) tax = taxableIncome * 0.24;
+                else if (taxableIncome > 40525) tax = taxableIncome * 0.22;
+                else if (taxableIncome > 9950) tax = taxableIncome * 0.12;
+                else tax = taxableIncome * 0.10;
+            } else if (filingStatus === 'married') {
+                if (taxableIncome > 628300) tax = taxableIncome * 0.37;
+                else if (taxableIncome > 418850) tax = taxableIncome * 0.35;
+                else if (taxableIncome > 329850) tax = taxableIncome * 0.32;
+                else if (taxableIncome > 172750) tax = taxableIncome * 0.24;
+                else if (taxableIncome > 81050) tax = taxableIncome * 0.22;
+                else if (taxableIncome > 19900) tax = taxableIncome * 0.12;
+                else tax = taxableIncome * 0.10;
+            } else { // head of household
+                if (taxableIncome > 523600) tax = taxableIncome * 0.37;
+                else if (taxableIncome > 209400) tax = taxableIncome * 0.35;
+                else if (taxableIncome > 164900) tax = taxableIncome * 0.32;
+                else if (taxableIncome > 86350) tax = taxableIncome * 0.24;
+                else if (taxableIncome > 54200) tax = taxableIncome * 0.22;
+                else if (taxableIncome > 14200) tax = taxableIncome * 0.12;
+                else tax = taxableIncome * 0.10;
+            }
+            
+            // Apply credits
+            tax -= credits;
+            if (tax < 0) tax = 0;
+            
+            const effectiveRate = (tax / income * 100).toFixed(1);
+            const afterTaxIncome = income - tax;
+            
+            // Display results
+            document.getElementById('taxableIncome').textContent = '$' + taxableIncome.toFixed(2);
+            document.getElementById('estimatedTax').textContent = '$' + tax.toFixed(2);
+            document.getElementById('effectiveTaxRate').textContent = effectiveRate + '%';
+            document.getElementById('afterTaxIncome').textContent = '$' + afterTaxIncome.toFixed(2);
+            
+            // Show result container with animation
+            const resultContainer = document.getElementById('taxResult');
+            resultContainer.style.display = 'block';
+            resultContainer.classList.add('animated-result');
+            
+            // Scroll to results
+            setTimeout(() => {
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        });
+        
+        // Savings Goal Tracker
+        document.getElementById('savingsTracker').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const goal = parseFloat(document.getElementById('savingsGoal').value);
+            const current = parseFloat(document.getElementById('currentSavings').value);
+            const monthly = parseFloat(document.getElementById('monthlyContribution').value);
+            const rate = parseFloat(document.getElementById('interestRateSavings').value) / 100 / 12;
+            
+            if (current >= goal) {
+                document.getElementById('timeToGoal').textContent = "Goal already reached!";
+                document.getElementById('totalInterestEarned').textContent = '$0.00';
+                document.getElementById('finalAmount').textContent = '$' + current.toFixed(2);
+            } else {
+                let balance = current;
+                let months = 0;
+                let totalInterest = 0;
+                
+                while (balance < goal && months < 1200) { // Cap at 100 years to prevent infinite loops
+                    const interest = balance * rate;
+                    balance += interest + monthly;
+                    totalInterest += interest;
+                    months++;
+                }
+                
+                const years = Math.floor(months / 12);
+                const remainingMonths = months % 12;
+                
+                let timeText = '';
+                if (years > 0) timeText += years + ' year' + (years > 1 ? 's' : '');
+                if (years > 0 && remainingMonths > 0) timeText += ' and ';
+                if (remainingMonths > 0) timeText += remainingMonths + ' month' + (remainingMonths > 1 ? 's' : '');
+                
+                document.getElementById('timeToGoal').textContent = timeText;
+                document.getElementById('totalInterestEarned').textContent = '$' + totalInterest.toFixed(2);
+                document.getElementById('finalAmount').textContent = '$' + balance.toFixed(2);
+                
+                // Create savings projection chart
+                const ctx = document.getElementById('savingsChart').getContext('2d');
+                if (window.savingsChart) {
+                    window.savingsChart.destroy();
+                }
+                
+                // Generate data points for chart
+                const dataPoints = Math.min(24, months); // Show up to 24 months or until goal is reached
+                const labels = [];
+                const data = [];
+                
+                balance = current;
+                for (let i = 0; i <= dataPoints; i++) {
+                    labels.push('Month ' + i);
+                    data.push(balance);
+                    
+                    if (i < dataPoints) {
+                        const interest = balance * rate;
+                        balance += interest + monthly;
+                    }
+                }
+                
+                // If goal was reached before 24 months, add the final month
+                if (months < dataPoints) {
+                    labels.push('Month ' + months);
+                    data.push(goal);
+                }
+                
+                window.savingsChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Savings Balance',
+                            data: data,
+                            backgroundColor: 'rgba(67, 97, 238, 0.2)',
+                            borderColor: '#4361ee',
+                            borderWidth: 2,
+                            tension: 0.1,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Amount ($)'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Time Period'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Show result container with animation
+            const resultContainer = document.getElementById('savingsResult');
+            resultContainer.style.display = 'block';
+            resultContainer.classList.add('animated-result');
+            
+            // Scroll to results
+            setTimeout(() => {
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        });
+        
+        // Currency Converter
+        document.getElementById('currencyConverter').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const amount = parseFloat(document.getElementById('amount').value);
+            const fromCurrency = document.getElementById('fromCurrency').value;
+            const toCurrency = document.getElementById('toCurrency').value;
+            
+            // Mock exchange rates (in a real app, you would fetch these from an API)
+            const exchangeRates = {
+                USD: { EUR: 0.85, GBP: 0.73, JPY: 110.15, CAD: 1.25, AUD: 1.30 },
+                EUR: { USD: 1.18, GBP: 0.86, JPY: 129.50, CAD: 1.47, AUD: 1.53 },
+                GBP: { USD: 1.37, EUR: 1.16, JPY: 150.75, CAD: 1.71, AUD: 1.78 },
+                JPY: { USD: 0.0091, EUR: 0.0077, GBP: 0.0066, CAD: 0.011, AUD: 0.012 },
+                CAD: { USD: 0.80, EUR: 0.68, GBP: 0.58, JPY: 88.25, AUD: 1.04 },
+                AUD: { USD: 0.77, EUR: 0.65, GBP: 0.56, JPY: 84.75, CAD: 0.96 }
+            };
+            
+            // Get exchange rate
+            const rate = exchangeRates[fromCurrency][toCurrency];
+            const convertedAmount = amount * rate;
+            
+            // Update flag images
+            document.getElementById('fromFlag').src = `https://flagcdn.com/16x12/${getCountryCode(fromCurrency)}.png`;
+            document.getElementById('toFlag').src = `https://flagcdn.com/16x12/${getCountryCode(toCurrency)}.png`;
+            
+            // Display results
+            document.getElementById('fromAmount').textContent = amount.toFixed(2);
+            document.getElementById('fromCurrencyCode').textContent = fromCurrency;
+            document.getElementById('convertedAmount').textContent = convertedAmount.toFixed(2);
+            document.getElementById('toCurrencyCode').textContent = toCurrency;
+            document.getElementById('exchangeRate').textContent = rate.toFixed(4);
+            document.getElementById('fromCode').textContent = fromCurrency;
+            document.getElementById('toCode').textContent = toCurrency;
+            
+            // Show result container with animation
+            const resultContainer = document.getElementById('currencyResult');
+            resultContainer.style.display = 'block';
+            resultContainer.classList.add('animated-result');
+            
+            // Scroll to results
+            setTimeout(() => {
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+            
+            function getCountryCode(currency) {
+                // Simplified mapping for demo purposes
+                const map = {
+                    USD: 'us',
+                    EUR: 'eu',
+                    GBP: 'gb',
+                    JPY: 'jp',
+                    CAD: 'ca',
+                    AUD: 'au'
+                };
+                return map[currency] || 'us';
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
